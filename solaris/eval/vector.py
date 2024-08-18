@@ -164,12 +164,14 @@ def precision_calc(proposal_polygons_dir, gt_polygons_dir,
                     iou_GDF = calculate_iou(row.geometry, ground_truth_gdf)
                     if 'iou_score' in iou_GDF.columns:
                         iou = iou_GDF.iou_score.max()
-                        max_iou_row = iou_GDF.loc[iou_GDF['iou_score'].idxmax(axis=0, skipna=True)]
+                        max_iou_row = iou_GDF.loc[iou_GDF['iou_score'].idxmax(
+                            axis=0, skipna=True)]
                         id_1 = row[prediction_cat_attrib]
                         id_2 = ground_truth_gdf.loc[max_iou_row.name][gt_cat_attrib]
                         if id_1 == id_2:
                             ious.append(iou)
-                            ground_truth_gdf.drop(max_iou_row.name, axis=0, inplace=True)
+                            ground_truth_gdf.drop(
+                                max_iou_row.name, axis=0, inplace=True)
                         else:
                             iou = 0
                             ious.append(iou)
@@ -267,12 +269,14 @@ def recall_calc(proposal_polygons_dir, gt_polygons_dir,
                     iou_GDF = calculate_iou(row.geometry, proposal_gdf)
                     if 'iou_score' in iou_GDF.columns:
                         iou = iou_GDF.iou_score.max()
-                        max_iou_row = iou_GDF.loc[iou_GDF['iou_score'].idxmax(axis=0, skipna=True)]
+                        max_iou_row = iou_GDF.loc[iou_GDF['iou_score'].idxmax(
+                            axis=0, skipna=True)]
                         id_1 = row[gt_cat_attrib]
                         id_2 = proposal_gdf.loc[max_iou_row.name][prediction_cat_attrib]
                         if id_1 == id_2:
                             ious.append(iou)
-                            proposal_gdf.drop(max_iou_row.name, axis=0, inplace=True)
+                            proposal_gdf.drop(
+                                max_iou_row.name, axis=0, inplace=True)
                         else:
                             iou = 0
                             ious.append(iou)
