@@ -5,6 +5,7 @@ import subprocess
 import sys
 
 from setuptools import find_packages, setup
+from security import safe_command
 
 
 def get_version():
@@ -31,7 +32,7 @@ def check_output(cmd):
     except AttributeError:
         # For some reasone check_output doesn't exist
         # So fall back on Popen
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        p = safe_command.run(subprocess.Popen, cmd, stdout=subprocess.PIPE)
         out, err = p.communicate()
         return out
 
