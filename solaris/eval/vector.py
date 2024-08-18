@@ -175,23 +175,24 @@ def precision_calc(
             i = 0
             for obj in object_subset:
                 conf_holder = []
-                proposal_gdf2 = proposal_gdf[proposal_gdf[prediction_cat_attrib] == obj]
+                proposal_gdf2 = proposal_gdf[
+                    proposal_gdf[prediction_cat_attrib] == obj]
                 for index, row in proposal_gdf2.iterrows():
                     if confidence_attrib is not None:
                         conf_holder.append(row[confidence_attrib])
                     iou_GDF = calculate_iou(row.geometry, ground_truth_gdf)
                     if "iou_score" in iou_GDF.columns:
                         iou = iou_GDF.iou_score.max()
-                        max_iou_row = iou_GDF.loc[
-                            iou_GDF["iou_score"].idxmax(axis=0, skipna=True)
-                        ]
+                        max_iou_row = iou_GDF.loc[iou_GDF["iou_score"].idxmax(
+                            axis=0, skipna=True)]
                         id_1 = row[prediction_cat_attrib]
-                        id_2 = ground_truth_gdf.loc[max_iou_row.name][gt_cat_attrib]
+                        id_2 = ground_truth_gdf.loc[
+                            max_iou_row.name][gt_cat_attrib]
                         if id_1 == id_2:
                             ious.append(iou)
-                            ground_truth_gdf.drop(
-                                max_iou_row.name, axis=0, inplace=True
-                            )
+                            ground_truth_gdf.drop(max_iou_row.name,
+                                                  axis=0,
+                                                  inplace=True)
                         else:
                             iou = 0
                             ious.append(iou)
@@ -211,7 +212,8 @@ def precision_calc(
             i = 0
 
             for obj in object_subset:
-                proposal_gdf2 = proposal_gdf[proposal_gdf[gt_cat_attrib] == obj]
+                proposal_gdf2 = proposal_gdf[proposal_gdf[gt_cat_attrib] ==
+                                             obj]
                 for z in range(len(proposal_gdf2)):
                     ious.append(0)
                 for item in ious:
@@ -296,20 +298,21 @@ def recall_calc(
             i = 0
             for obj in object_subset:
                 ground_truth_gdf2 = ground_truth_gdf[
-                    ground_truth_gdf[gt_cat_attrib] == obj
-                ]
+                    ground_truth_gdf[gt_cat_attrib] == obj]
                 for index, row in ground_truth_gdf2.iterrows():
                     iou_GDF = calculate_iou(row.geometry, proposal_gdf)
                     if "iou_score" in iou_GDF.columns:
                         iou = iou_GDF.iou_score.max()
-                        max_iou_row = iou_GDF.loc[
-                            iou_GDF["iou_score"].idxmax(axis=0, skipna=True)
-                        ]
+                        max_iou_row = iou_GDF.loc[iou_GDF["iou_score"].idxmax(
+                            axis=0, skipna=True)]
                         id_1 = row[gt_cat_attrib]
-                        id_2 = proposal_gdf.loc[max_iou_row.name][prediction_cat_attrib]
+                        id_2 = proposal_gdf.loc[
+                            max_iou_row.name][prediction_cat_attrib]
                         if id_1 == id_2:
                             ious.append(iou)
-                            proposal_gdf.drop(max_iou_row.name, axis=0, inplace=True)
+                            proposal_gdf.drop(max_iou_row.name,
+                                              axis=0,
+                                              inplace=True)
                         else:
                             iou = 0
                             ious.append(iou)
@@ -325,8 +328,7 @@ def recall_calc(
             i = 0
             for obj in object_subset:
                 ground_truth_gdf2 = ground_truth_gdf[
-                    ground_truth_gdf[gt_cat_attrib] == obj
-                ]
+                    ground_truth_gdf[gt_cat_attrib] == obj]
                 for z in range(len(ground_truth_gdf2)):
                     ious.append(0)
                 for item in ious:
@@ -528,9 +530,9 @@ def mAP_score(
 
     recall_thresholds = np.arange(0, 1.01, 0.01).tolist()
     APs_by_class = []
-    for p_obj_list, c_obj_list, r_obj_list in zip(
-        precision_iou_by_obj, confidences, recall_iou_by_obj
-    ):
+    for p_obj_list, c_obj_list, r_obj_list in zip(precision_iou_by_obj,
+                                                  confidences,
+                                                  recall_iou_by_obj):
         num_objs = len(r_obj_list)
         p_obj_list_sorted = [x for _, x in sorted(zip(c_obj_list, p_obj_list))]
         p_obj_list_sorted.reverse()
