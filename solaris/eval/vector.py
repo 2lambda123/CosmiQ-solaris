@@ -1,8 +1,10 @@
-import os
 import glob
-from tqdm import tqdm
-import numpy as np
+import os
+
 import geopandas as gpd
+import numpy as np
+from tqdm import tqdm
+
 from .iou import calculate_iou
 
 

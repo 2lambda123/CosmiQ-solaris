@@ -1,4 +1,5 @@
 import os
+
 from solaris.data import data_dir
 from solaris.eval import vector
 
