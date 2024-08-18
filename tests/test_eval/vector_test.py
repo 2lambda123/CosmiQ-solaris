@@ -8,6 +8,7 @@ class TestVectorMetrics(object):
     """Test the vector metrics."""
 
     def test_vector_metrics(self):
+        """ """
         proposal_polygons_dir = os.path.join(data_dir, "eval_vector/preds/")
         gt_polygons_dir = os.path.join(data_dir, "eval_vector/gt/")
         (

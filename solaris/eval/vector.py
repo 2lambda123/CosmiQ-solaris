@@ -17,10 +17,11 @@ def average_score_by_class(ious, threshold=0.5):
             A list containing individual lists of ious for eachobject class.
         threshold : float
             A value between 0.0 and 1.0 that determines the threshold for a true positve.
-    Returns
-    ---------
-        average_by_class : list
-            A list containing the ratio of true positives for each class
+
+    :param ious: 
+    :param threshold:  (Default value = 0.5)
+
+    
     """
     binary_scoring_lists = []
     for x in ious:
@@ -61,14 +62,14 @@ def get_all_objects(
             specifies unique classes
         file_format : str
             The extension or file format for predictions
-    Returns
-    ---------
-            prop_objs : list
-                All unique objects that exist in the proposals
-            gt_obj : list
-                All unique objects that exist in the ground truth
-            all_objs : list
-                A union of the prop_objs and gt_objs lists
+
+    :param proposal_polygons_dir: 
+    :param gt_polygons_dir: 
+    :param prediction_cat_attrib:  (Default value = "class")
+    :param gt_cat_attrib:  (Default value = "make")
+    :param file_format:  (Default value = "geojson")
+
+    
     """
     objs = []
     os.chdir(proposal_polygons_dir)
@@ -136,16 +137,17 @@ def precision_calc(
             true positve.
         file_format : str
             The extension or file format for predictions
-    Returns
-    ---------
-        iou_holder : list of lists
-            An iou score for each object per class (precision specific)
-        precision_by_class : list
-            A list containing the precision score for each class
-        mPrecision : float
-            The mean precision score of precision_by_class
-        confidences : list of lists
-            All confidences for each object for each class
+
+    :param proposal_polygons_dir: 
+    :param gt_polygons_dir: 
+    :param prediction_cat_attrib:  (Default value = "class")
+    :param gt_cat_attrib:  (Default value = "make")
+    :param confidence_attrib:  (Default value = None)
+    :param object_subset:  (Default value = [])
+    :param threshold:  (Default value = 0.5)
+    :param file_format:  (Default value = "geojson")
+
+    
     """
     ious = []
     os.chdir(proposal_polygons_dir)
@@ -260,14 +262,16 @@ def recall_calc(
             true positve.
         file_format : str
             The extension or file format for predictions
-    Returns
-    ---------
-        iou_holder : list of lists
-            An iou score for each object per class (recall specific)
-        recall_by_class : list
-            A list containing the recall score for each class
-        mRecall : float
-            The mean recall score of recall_by_class
+
+    :param proposal_polygons_dir: 
+    :param gt_polygons_dir: 
+    :param prediction_cat_attrib:  (Default value = "class")
+    :param gt_cat_attrib:  (Default value = "make")
+    :param object_subset:  (Default value = [])
+    :param threshold:  (Default value = 0.5)
+    :param file_format:  (Default value = "geojson")
+
+    
     """
     ious = []
     os.chdir(gt_polygons_dir)
@@ -378,35 +382,18 @@ def mF1(
             The extension or file format for predictions
         all_outputs : bool
             `True` or `False`.  If `True` returns an expanded output.
-    Returns
-    ---------
-        if all_outputs is `True`:
-            mF1 : float
-                The mean F1 score of f1s_by_class
-            f1s_by_class : list
-                A list containing the f1 score for each class
-            precision_iou_by_obj : list of lists
-                An iou score for each object per class (precision specific)
-            precision_by_class : list
-                A list containing the precision score for each class
-            mPrecision : float
-                The mean precision score of precision_by_class
-            recall_iou_by_obj : list of lists
-                An iou score for each object per class (recall specific)
-            recall_by_class : list
-                A list containing the recall score for each class
-            mRecall : float
-                The mean recall score of recall_by_class
-            object_subset : list
-                All unique objects that exist in the ground truth polygons
-            confidences : list of lists
-                All confidences for each object for each class
-        if all_outputs is `False`:
-            mF1_score : float
-                The mean F1 score of f1s_by_class (only calculated for ground
-                ground truth classes)
-            f1s_by_class : list
-                A list containing the f1 score for each class
+
+    :param proposal_polygons_dir: 
+    :param gt_polygons_dir: 
+    :param prediction_cat_attrib:  (Default value = "class")
+    :param gt_cat_attrib:  (Default value = "make")
+    :param object_subset:  (Default value = [])
+    :param threshold:  (Default value = 0.5)
+    :param confidence_attrib:  (Default value = None)
+    :param file_format:  (Default value = "geojson")
+    :param all_outputs:  (Default value = False)
+
+    
     """
     if len(object_subset) == 0:
         print("getting unique objects...")
@@ -477,7 +464,7 @@ def mAP_score(
     Precision (mAP) and  mF1 metrics. Filenames of predictions and ground-truth
     must be identical.  Will only calculate metric for classes that exist in
     the ground truth.
-
+    
     Arguments
     ---------
         proposal_polygons_dir : str
@@ -503,32 +490,17 @@ def mAP_score(
             specifies model confidence for each prediction
         file_format : str
             The extension or file format for predictions
-    Returns
-    ---------
-        mAP : float
-            The mean average precision score of APs_by_class
-        APs_by_class : list
-            A list containing the AP score for each class
-        mF1 : float
-            The mean F1 score of f1s_by_class
-        f1s_by_class : list
-            A list containing the f1 score for each class
-        precision_iou_by_obj : list of lists
-            An iou score for each object per class (precision specific)
-        precision_by_class : list
-            A list containing the precision score for each class
-        mPrecision : float
-            The mean precision score of precision_by_class
-        recall_iou_by_obj : list of lists
-            An iou score for each object per class (recall specific)
-        recall_by_class : list
-            A list containing the recall score for each class
-        mRecall : float
-            The mean recall score of recall_by_class
-        object_subset : list
-            All unique objects that exist in the ground truth polygons
-        confidences : list of lists
-            All confidences for each object for each class
+
+    :param proposal_polygons_dir: 
+    :param gt_polygons_dir: 
+    :param prediction_cat_attrib:  (Default value = "class")
+    :param gt_cat_attrib:  (Default value = "make")
+    :param object_subset:  (Default value = [])
+    :param threshold:  (Default value = 0.5)
+    :param confidence_attrib:  (Default value = "confidence")
+    :param file_format:  (Default value = "geojson")
+
+    
     """
 
     (
