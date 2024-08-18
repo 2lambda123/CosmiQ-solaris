@@ -18,10 +18,10 @@ def average_score_by_class(ious, threshold=0.5):
         threshold : float
             A value between 0.0 and 1.0 that determines the threshold for a true positve.
 
-    :param ious: 
+    :param ious:
     :param threshold:  (Default value = 0.5)
 
-    
+
     """
     binary_scoring_lists = []
     for x in ious:
@@ -63,13 +63,13 @@ def get_all_objects(
         file_format : str
             The extension or file format for predictions
 
-    :param proposal_polygons_dir: 
-    :param gt_polygons_dir: 
+    :param proposal_polygons_dir:
+    :param gt_polygons_dir:
     :param prediction_cat_attrib:  (Default value = "class")
     :param gt_cat_attrib:  (Default value = "make")
     :param file_format:  (Default value = "geojson")
 
-    
+
     """
     objs = []
     os.chdir(proposal_polygons_dir)
@@ -138,8 +138,8 @@ def precision_calc(
         file_format : str
             The extension or file format for predictions
 
-    :param proposal_polygons_dir: 
-    :param gt_polygons_dir: 
+    :param proposal_polygons_dir:
+    :param gt_polygons_dir:
     :param prediction_cat_attrib:  (Default value = "class")
     :param gt_cat_attrib:  (Default value = "make")
     :param confidence_attrib:  (Default value = None)
@@ -147,7 +147,7 @@ def precision_calc(
     :param threshold:  (Default value = 0.5)
     :param file_format:  (Default value = "geojson")
 
-    
+
     """
     ious = []
     os.chdir(proposal_polygons_dir)
@@ -263,15 +263,15 @@ def recall_calc(
         file_format : str
             The extension or file format for predictions
 
-    :param proposal_polygons_dir: 
-    :param gt_polygons_dir: 
+    :param proposal_polygons_dir:
+    :param gt_polygons_dir:
     :param prediction_cat_attrib:  (Default value = "class")
     :param gt_cat_attrib:  (Default value = "make")
     :param object_subset:  (Default value = [])
     :param threshold:  (Default value = 0.5)
     :param file_format:  (Default value = "geojson")
 
-    
+
     """
     ious = []
     os.chdir(gt_polygons_dir)
@@ -383,8 +383,8 @@ def mF1(
         all_outputs : bool
             `True` or `False`.  If `True` returns an expanded output.
 
-    :param proposal_polygons_dir: 
-    :param gt_polygons_dir: 
+    :param proposal_polygons_dir:
+    :param gt_polygons_dir:
     :param prediction_cat_attrib:  (Default value = "class")
     :param gt_cat_attrib:  (Default value = "make")
     :param object_subset:  (Default value = [])
@@ -393,7 +393,7 @@ def mF1(
     :param file_format:  (Default value = "geojson")
     :param all_outputs:  (Default value = False)
 
-    
+
     """
     if len(object_subset) == 0:
         print("getting unique objects...")
@@ -464,7 +464,7 @@ def mAP_score(
     Precision (mAP) and  mF1 metrics. Filenames of predictions and ground-truth
     must be identical.  Will only calculate metric for classes that exist in
     the ground truth.
-    
+
     Arguments
     ---------
         proposal_polygons_dir : str
@@ -491,8 +491,8 @@ def mAP_score(
         file_format : str
             The extension or file format for predictions
 
-    :param proposal_polygons_dir: 
-    :param gt_polygons_dir: 
+    :param proposal_polygons_dir:
+    :param gt_polygons_dir:
     :param prediction_cat_attrib:  (Default value = "class")
     :param gt_cat_attrib:  (Default value = "make")
     :param object_subset:  (Default value = [])
@@ -500,7 +500,7 @@ def mAP_score(
     :param confidence_attrib:  (Default value = "confidence")
     :param file_format:  (Default value = "geojson")
 
-    
+
     """
 
     (
