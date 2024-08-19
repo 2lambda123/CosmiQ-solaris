@@ -415,9 +415,9 @@ def df_to_coco_annos(
                 'Setting category to "other" for objects outside of '
                 "preset category list."
             )
-            temp_df.loc[
-                ~temp_df[category_col].isin(category_names), category_col
-            ] = "other"
+            temp_df.loc[~temp_df[category_col].isin(category_names), category_col] = (
+                "other"
+            )
             if "other" not in category_dict.keys():
                 logger.debug('Adding "other" to category_dict.')
                 other_id = np.array(list(category_dict.values())).max() + 1
