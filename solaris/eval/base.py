@@ -141,9 +141,9 @@ class Evaluator:
                         if new_iou > previous_iou:
                             self.ground_truth_GDF.iloc[max_index, iou_index] = new_iou
                         if max_iou_row["iou_score"] > miniou:
-                            self.proposal_GDF.loc[
-                                pred_row.name, iou_field
-                            ] = max_iou_row["iou_score"]
+                            self.proposal_GDF.loc[pred_row.name, iou_field] = (
+                                max_iou_row["iou_score"]
+                            )
                             self.ground_truth_GDF_Edit = (
                                 self.ground_truth_GDF_Edit.drop(
                                     max_iou_row.name, axis=0
@@ -291,9 +291,9 @@ class Evaluator:
                             iou_GDF["iou_score"].idxmax(axis=0, skipna=True)
                         ]
                         if max_iou_row["iou_score"] > miniou:
-                            self.proposal_GDF.loc[
-                                pred_row.name, iou_field
-                            ] = max_iou_row["iou_score"]
+                            self.proposal_GDF.loc[pred_row.name, iou_field] = (
+                                max_iou_row["iou_score"]
+                            )
                             self.ground_truth_GDF_Edit = (
                                 self.ground_truth_GDF_Edit.drop(
                                     max_iou_row.name, axis=0
@@ -427,9 +427,9 @@ class Evaluator:
                             iou_GDF["iou_score"].idxmax(axis=0, skipna=True)
                         ]
                         if max_iou_row["iou_score"] > miniou:
-                            self.proposal_GDF.loc[
-                                pred_row.name, iou_field
-                            ] = max_iou_row["iou_score"]
+                            self.proposal_GDF.loc[pred_row.name, iou_field] = (
+                                max_iou_row["iou_score"]
+                            )
                             self.ground_truth_GDF_Edit = (
                                 self.ground_truth_GDF_Edit.drop(
                                     max_iou_row.name, axis=0

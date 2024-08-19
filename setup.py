@@ -4,8 +4,8 @@ import re
 import subprocess
 import sys
 
-from setuptools import find_packages, setup
 from security import safe_command
+from setuptools import find_packages, setup
 
 
 def get_version():
